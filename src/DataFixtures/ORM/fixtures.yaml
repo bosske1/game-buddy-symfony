@@ -1,0 +1,27 @@
+App\Entity\User:
+  user1:
+    username (unique): '<username()>'
+    first_name: '<firstName()>'
+    last_name: '<lastName()>'
+    email (unique): '<email()>'
+    salt: '<generateSalt()>'
+    password: '<generatePassword(admin123, @user1->salt)>'
+    created_at: '<dateTimeBetween("-5 days", "now")>'
+    confirmation_token: ''
+    is_verified: true
+    is_admin: true
+    gender: '<generateGender()>'
+    birthday: '<dateTimeBetween("-45 years", "-25 years")>'
+  user{2..120}:
+    username (unique): '<username()>'
+    first_name: '<firstName()>'
+    last_name: '<lastName()>'
+    email (unique): '<email()>'
+    salt: '<generateSalt()>'
+    password: '<generatePassword(admin123, @user<current()>->salt)>'
+    created_at: '<dateTimeBetween("-5 days", "now")>'
+    confirmation_token: ''
+    is_verified: true
+    is_admin: false
+    gender: '<generateGender()>'
+    birthday: '<dateTimeBetween("-45 years", "-25 years")>'

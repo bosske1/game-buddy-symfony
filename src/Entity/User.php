@@ -42,7 +42,7 @@ class User
     private $salt;
 
     /**
-     * @ORM\Column(type="string", length=32)
+     * @ORM\Column(type="string", length=40)
      */
     private $password;
 
@@ -69,12 +69,17 @@ class User
     /**
      * @ORM\Column(type="string", length=20, options={"default": "male"})
      */
-    private $sex;
+    private $gender;
 
     /**
      * @ORM\Column(type="date")
      */
     private $birthday;
+
+    public function __construct()
+    {
+        $this->salt = base_convert(sha1(uniqid(mt_rand(), true)), 16, 36);
+    }
 
     public function getId()
     {
@@ -201,14 +206,14 @@ class User
         return $this;
     }
 
-    public function getSex(): ?string
+    public function getGender(): ?string
     {
-        return $this->sex;
+        return $this->gender;
     }
 
-    public function setSex(string $sex): self
+    public function setGender(string $gender): self
     {
-        $this->sex = $sex;
+        $this->gender = $gender;
 
         return $this;
     }
